@@ -1,10 +1,6 @@
 import 'dart:async';
 
 import 'package:csm_view/csm_view.dart';
-import 'package:example/entries/groups/business_widgets/business_widgets_group.dart';
-import 'package:example/entries/groups/controls_widgets/controls_widgets_group.dart';
-import 'package:example/entries/groups/view_base/view_base_group.dart';
-import 'package:example/entries/groups/widgets/widgets_group.dart';
 import 'package:example/mocks/service_mock.dart';
 import 'package:example/theme/view_package_theme_base.dart';
 import 'package:example/theme/view_package_theme_dark.dart';
@@ -18,7 +14,7 @@ void main(List<String> args) {
 }
 
 /// Package sandbox configuration, entry point where the example sandbox is built and configured.
-final class PakageExampleSandbox extends PackageSandboxViewBase<ViewPackageThemeBase> {
+final class PakageExampleSandbox extends SandboxViewBase<ViewPackageThemeBase> {
   /// Creates a new instance.
   PakageExampleSandbox()
       : super(
@@ -45,13 +41,7 @@ final class PakageExampleSandbox extends PackageSandboxViewBase<ViewPackageTheme
               ],
             );
           },
-          sandboxEntries: <IPackageSandboxEntry<ViewPackageThemeBase>>[
-            //* Groups
-            ViewBaseGroup(),
-            WidgetsGroup(),
-            BusinessWidgetsGroup(),
-            ControlsWidgetsGroup(),
-          ],
+          nodes: <ISandboxPageNode<ViewPackageThemeBase>>[],
         );
 
   @override

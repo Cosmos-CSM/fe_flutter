@@ -1,31 +1,28 @@
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart';
 
-/// Represents a [PackageSandboxViewBase] item, containing data to build the view and routing handling.
+/// Represents a [SandboxViewBase] item, containing data to build the view and routing handling.
 ///
 /// [ThemeBase] represents the theming type.
-abstract class PackageSandboxEntryBase<ThemeBase extends PackageSandboxThemeBase> extends ViewPageBase implements IPackageSandboxEntry<ThemeBase> {
+abstract class SandboxPageNodeBase<ThemeBase extends SandboxThemeBase> implements ISandboxPageNode<ThemeBase> {
   /// Entry name.
   @override
   final String name;
 
-  @override
-  /// Entry image decorator, if not provided [icon] property would be used.
-  final ImageProvider? image;
-
-  @override
-
   /// Icon image decorator, if not provided [image] property would be used.
+  @override
   final IconData? icon;
 
+  /// Entry image decorator, if not provided [icon] property would be used.
   @override
+  final ImageProvider? image;
 
   /// Entry description.
+  @override
   final DescriptionBuilder<ThemeBase> description;
 
   /// Creates a new instance.
-  const PackageSandboxEntryBase({
-    super.key,
+  const SandboxPageNodeBase({
     this.image,
     this.icon,
     required this.name,
@@ -34,11 +31,4 @@ abstract class PackageSandboxEntryBase<ThemeBase extends PackageSandboxThemeBase
 
   @override
   List<IRoutingGraphData> composeRoutes(GlobalKey<NavigatorState> navLayoutKey, GlobalKey<NavigatorState> entryLayoutKey) => <IRoutingGraphData>[];
-
-  @override
-  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
-    final ThemeBase themeData = ThemingUtils.get<ThemeBase>(context);
-
-    return composeEntry(context, windowSize, themeData);
-  }
 }

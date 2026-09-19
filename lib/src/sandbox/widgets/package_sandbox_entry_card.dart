@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 /// A card displayed that displays the information of each [IPackageSandboxItem] and its [RouteData] to handle routing when it's clicked.
 ///
 /// [ThemeBase] type of the theme.
-final class PackageSandboxWelcomeEntryCard<ThemeBase extends PackageSandboxThemeBase> extends StatelessWidget {
+final class PackageSandboxWelcomeEntryCard<ThemeBase extends SandboxThemeBase> extends StatelessWidget {
   /// Route data for redirection behavior.
   final RouteData routeData;
 
   /// Sandbox item data.
-  final IPackageSandboxEntry<ThemeBase> sandboxItem;
+  final ISandboxPageNode<ThemeBase> sandboxItem;
 
   /// Creates a new instance.
   const PackageSandboxWelcomeEntryCard({

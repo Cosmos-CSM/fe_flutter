@@ -1,4 +1,4 @@
-import 'package:csm_view/csm_view.dart' hide RouteData, DialogView;
+import 'package:csm_view/csm_view.dart' hide RouteData, DialogView, PageProxy;
 import 'package:flutter/material.dart';
 
 /// Represents a [RoutingGraphBase] application's whisper route, a whisper is a modal routed page.
@@ -17,7 +17,7 @@ abstract class RoutingGraphWhisperDataBase<T> extends RoutingGraphNodeDataBase i
     super.redirection,
     super.parentNavigationState,
   }) : super(
-          transitionBuilder: (IViewPage page) {
+          transitionBuilder: (IPage page) {
             return _Whisper<T>(
               whisperOptions,
               builder: (BuildContext ctx) {

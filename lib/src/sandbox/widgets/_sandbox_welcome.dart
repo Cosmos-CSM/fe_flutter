@@ -1,9 +1,9 @@
-part of '../abstractions/bases/package_sandbox_view_base.dart';
+part of '../abstractions/bases/sandbox_view_base.dart';
 
-/// A welcome view page for the [PackageSandboxViewBase].
+/// Draws a welcoming view.
 ///
-/// [ThemeBase] type of the delegated application theme base usage.
-final class _PackageSandboxWelcome<ThemeBase extends PackageSandboxThemeBase> extends ViewPageBase {
+/// [ThemeBase] represents the theme data base this [PageBase] uses.
+final class _SandboxWelcome<ThemeBase extends SandboxThemeBase> extends PageBase {
   /// Name of the package being sandbox'd.
   final String name;
 
@@ -11,21 +11,24 @@ final class _PackageSandboxWelcome<ThemeBase extends PackageSandboxThemeBase> ex
   final DescriptionBuilder<ThemeBase> description;
 
   /// View routing grapth.
-  final Map<RouteData, IPackageSandboxEntry<ThemeBase>> routingGraph;
+  final Map<RouteData, ISandboxPageNode<ThemeBase>> routingGraph;
 
-  /// Creates a new [_PackageSandboxWelcome] instance.
-  const _PackageSandboxWelcome({
+  /// Creates a new [_SandboxWelcome] instance.
+  const _SandboxWelcome({
     required this.name,
-    required this.routingGraph,
     required this.description,
+    required this.routingGraph,
+    required super.routingData,
   });
 
   @override
-  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
+  Widget composePage(PageContext pageCtx) {
+    BuildContext context = pageCtx.context;
+
     final ThemeBase theme = ThemingUtils.get(context);
 
     return SizedBox.fromSize(
-      size: pageSize,
+      size: pageCtx.pageSize,
       child: Column(
         children: <Widget>[
           //* Welcome title header.
@@ -67,7 +70,7 @@ final class _PackageSandboxWelcome<ThemeBase extends PackageSandboxThemeBase> ex
 
           //* Sandbox entries cards.
           Expanded(
-            child: PackageSandboxWelcomeEntryCardDashboard<ThemeBase>(
+            child: SandboxCardsDashboard<ThemeBase>(
               sandboxEntries: routingGraph,
             ),
           )

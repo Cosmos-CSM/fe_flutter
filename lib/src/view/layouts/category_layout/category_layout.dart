@@ -48,7 +48,7 @@ final class CategoryLayout extends ViewLayoutBase {
   }) : assert(pages.length > 0, 'Must be at least one article configured');
 
   @override
-  Widget compose(BuildContext buildContext, Size windowSize, Size pageSize) {
+  Widget composePage(PageContext pageCtx) {
     final GlobalKey<CategoryLayoutMessengerState> messengerRef = GlobalKey();
 
     return Padding(
@@ -59,7 +59,7 @@ final class CategoryLayout extends ViewLayoutBase {
           _CategoryLayoutRibbon(
             pages: pages,
             messengerRef: messengerRef,
-            routeData: routingData.targetRoute,
+            routeData: routingData.routeData,
           ),
 
           /// --> Content Box (message system/page content)

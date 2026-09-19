@@ -1,4 +1,4 @@
-import 'package:csm_view/csm_view.dart';
+import 'package:csm_view/csm_view.dart' hide PageProxy;
 import 'package:flutter/material.dart' hide LayoutBuilder, Router;
 
 /// Represents a [RoutingGraphBase] layout route data.

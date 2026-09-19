@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:csm_view/csm_view.dart';
+import 'package:csm_view/csm_view.dart' hide PageProxy;
 import 'package:flutter/material.dart' hide Route, Router;
 
 /// Represents a [RoutingGraphBase] leaf, an application's final graph route.
@@ -15,7 +15,7 @@ abstract interface class IRoutingGraphLeafData {
   final Redirection? redirection;
 
   /// Builder for [IPage] transitions along [RouterBase] events.
-  final Page<void> Function(IViewPage page)? transitionBuilder;
+  final Page<void> Function(IPage page)? transitionBuilder;
 
   /// Callback invoked when the current [route] is popped or removed from the [RouterBase] history.
   ///

@@ -1,7 +1,7 @@
 import 'package:csm_view/csm_view.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Page;
 
-final class PackageSandboxConfigurableItem<ThemeBase extends PackageSandboxThemeBase> extends PackageSandboxItemBase<ThemeBase> {
+final class SandboxConfigurablePage<ThemeBase extends SandboxThemeBase> extends PackageSandboxItemBase<ThemeBase> {
   /// Builder for the main item content.
   ///
   /// [viewContext] framweork building context.
@@ -21,17 +21,20 @@ final class PackageSandboxConfigurableItem<ThemeBase extends PackageSandboxTheme
   final Widget Function(BuildContext viewContext, Size windowSize, ThemeBase theme) configsBuilder;
 
   /// Creates a new instance.
-  const PackageSandboxConfigurableItem({
+  const SandboxConfigurablePage({
     required super.name,
-    required super.description,
     required this.viewBuilder,
+    required super.description,
     required this.configsBuilder,
   });
 
   @override
-  Widget composeEntry(BuildContext buildContext, Size windowSize, ThemeBase theme) {
-    return Stack(
-      children: <Widget>[],
+  IPage composeNode(SandboxPageContext<ThemeBase> sandboxPageCtx) {
+    return PageProxy(
+      routingData: sandboxPageCtx.routingData,
+      pageBuilder: (PageContext pageCtx) {
+        return Container();
+      },
     );
   }
 }

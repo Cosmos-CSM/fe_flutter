@@ -1,27 +1,27 @@
-part of '../../abstractions/bases/package_sandbox_view_base.dart';
+part of '../../abstractions/bases/sandbox_view_base.dart';
 
 /// A layout that shows the item data, and the composed view on a standarized way along all items.
 ///
 /// [ThemeBase] theme base type.
-final class _PackageSandboxEntryLayout<ThemeBase extends PackageSandboxThemeBase> extends ViewLayoutBase {
+final class _PackageSandboxEntryLayout<ThemeBase extends SandboxThemeBase> extends ViewLayoutBase {
   /// Sandbox item data.
-  final IPackageSandboxEntry<ThemeBase> sandboxEntries;
+  final ISandboxPageNode<ThemeBase> node;
 
   /// Creates a new instance.
   const _PackageSandboxEntryLayout({
     required super.page,
     required super.routingData,
-    required this.sandboxEntries,
+    required this.node,
   });
 
   @override
-  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
+  Widget composePage(PageContext pageCtx) {
     const double headerItemsSpacing = 8;
     const double headerPadding = 16;
 
-    final ThemeBase theme = ThemingUtils.get(context);
+    final ThemeBase theme = ThemingUtils.get(pageCtx.context);
 
-    final double paddedBox = pageSize.width - (headerItemsSpacing + (headerPadding * 2));
+    final double paddedBox = pageCtx.pageSize.width - (headerItemsSpacing + (headerPadding * 2));
     double descriptionWidth = paddedBox * .65;
     double deviceInfoWidth = paddedBox * .35;
     if (paddedBox < 600) {
@@ -34,7 +34,7 @@ final class _PackageSandboxEntryLayout<ThemeBase extends PackageSandboxThemeBase
         minHeight: 450,
       ),
       child: SizedBox.fromSize(
-        size: pageSize,
+        size: pageCtx.pageSize,
         child: Padding(
           padding: const EdgeInsets.all(headerPadding),
           child: Column(
@@ -65,7 +65,7 @@ final class _PackageSandboxEntryLayout<ThemeBase extends PackageSandboxThemeBase
                         width: descriptionWidth,
                         child: SingleChildScrollView(
                           child: Text.rich(
-                            sandboxEntries.description(theme, theme.page.fore),
+                            node.description(theme, theme.page.fore),
                           ),
                         ),
                       ),

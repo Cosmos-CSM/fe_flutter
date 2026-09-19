@@ -1,38 +1,34 @@
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart';
 
-/// Represents a [PackageSandboxViewBase] item, containing data to build the view and routing handling.
+/// Represents a [SandboxViewBase] item, containing data to build the view and routing handling.
 ///
 /// [ThemeBase] represents the theming type.
-abstract interface class IPackageSandboxEntry<ThemeBase extends PackageSandboxThemeBase> implements IViewPage {
+abstract interface class ISandboxPageNode<ThemeBase extends SandboxThemeBase> {
   /// Entry name.
   final String name;
 
-  /// Entry image decorator.
-  final ImageProvider? image;
-
   /// Icon image decorator, if not provided [image] property would be used.
   final IconData? icon;
+
+  /// Entry image decorator.
+  final ImageProvider? image;
 
   /// Entry description.
   final DescriptionBuilder<ThemeBase> description;
 
   /// Creates a new instance.
-  const IPackageSandboxEntry(
+  const ISandboxPageNode(
     this.name,
     this.icon,
     this.image,
     this.description,
   );
 
-  /// Composes the sandbox item user view.
+  /// Composes the sandbox page view.
   ///
-  /// [buildContext] framework building context data.
-  ///
-  /// [windowSize] represents the available application window space.
-  ///
-  /// [theme] current theming data.
-  Widget composeEntry(BuildContext buildContext, Size windowSize, ThemeBase theme);
+  /// [sandboxPageCtx] provides [SandboxViewBase] page building context data.
+  IPage composeNode(SandboxPageContext<ThemeBase> sandboxPageCtx);
 
   /// Composes needed nested routes.
   ///

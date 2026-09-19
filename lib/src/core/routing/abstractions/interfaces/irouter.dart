@@ -1,10 +1,9 @@
+import 'package:csm_client_core/csm_client_core.dart' hide DataMap;
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart';
 
 /// Represents a { View } routing context handler.
 abstract interface class IRouter {
-
-
   /// Moves the application [context] routing to the given [routeData] location.
   ///
   /// [route] target desired [RouteData] information.
@@ -16,7 +15,17 @@ abstract interface class IRouter {
   /// [extraData] extra data shared along [RouteData] resolutions.
   ///
   /// [allowLogs] whether the nethod can print logs.
-  void go(BuildContext context, RouteData routeData, {bool ignoreRedirection, bool allowLogs, bool pushHistory, DataMap? extraData});
+  /// 
+  /// [pageParams] current page parameters, commonly passed through the application routing path as query parameters.  
+  void go(
+    BuildContext context,
+    RouteData routeData, {
+    bool ignoreRedirection,
+    bool allowLogs,
+    bool pushHistory,
+    DataMap? extraData,
+    Map<String, String> pageParams,
+  });
 
   /// Gets the [RouteData] from the given { View } application's [absolutePath].
   ///
@@ -42,4 +51,11 @@ abstract interface class IRouter {
   ///
   /// [allowLogs] - Whether the method must display logs.
   String? resolveDevRedirection(RouteData routeData, String currentPath, String? targetPath, [bool allowLogs]);
+
+  /// Loads given [obj] using [IDecodable.decode] using current route page parameters (a.k.a query params).
+  ///
+  /// [viewCtx] is the current view context used to track the current view container used; commonly matter on multi window scenarios.
+  ///
+  /// [obj] instance that is used to load the data from the page parameters tracked [DataMap].
+  void loadPageParams(BuildContext viewCtx, IDecodable obj);
 }

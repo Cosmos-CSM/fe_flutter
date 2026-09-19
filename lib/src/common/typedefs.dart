@@ -6,7 +6,7 @@ import 'package:flutter/material.dart' hide Route, Router;
 typedef NavigationState = GlobalKey<NavigatorState>;
 
 /// Type definition for [IPage] builder method.
-typedef PageBuilder = IViewPage Function(BuildContext ctx, RoutingData routeData);
+typedef PageBuilder = IPage Function(BuildContext ctx, RoutingData routeData);
 
 /// Type definition for [LayoutI] builder method.
 typedef LayoutBuilder = IViewLayout Function(BuildContext ctx, RoutingData routeData, Widget page);

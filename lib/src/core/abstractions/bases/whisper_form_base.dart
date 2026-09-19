@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:csm_view/csm_view.dart' hide LayoutBuilder;
 import 'package:flutter/material.dart' hide Router, Route;
 
-/// Represents a { View } whisper that is a modal view page.
-abstract class ViewWhisperFormBase extends ViewPageBase implements IViewWhisperForm {
+/// Represents a `whisper` [Form].
+abstract class WhisperFormBase extends PageBase implements IWhisperForm {
   /// Whisper title.
   @override
   final String title;
@@ -15,7 +15,8 @@ abstract class ViewWhisperFormBase extends ViewPageBase implements IViewWhisperF
   final double controlsWidth;
 
   /// Creates a new instance.
-  const ViewWhisperFormBase({
+  const WhisperFormBase({
+    required super.routingData,
     this.title = 'Welcome',
     this.controlsWidth = 125,
   });
@@ -30,13 +31,13 @@ abstract class ViewWhisperFormBase extends ViewPageBase implements IViewWhisperF
 
   /// Composes the form.
   @override
-  Widget composeForm(GlobalKey<FormState> formState, BuildContext context, Size windowSize, Size pageSize);
+  Widget composeForm(GlobalKey<FormState> formState, PageContext pageCtx);
 
   @override
   @Deprecated('Dont override this method, use composeForm instead')
-  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
+  Widget composePage(PageContext pageCtx) {
     /// Theming data.
-    IThemeData themeData = ThemingUtils.get(context);
+    IThemeData themeData = ThemingUtils.get(pageCtx.context);
 
     return LayoutBuilder(
       builder: (_, BoxConstraints boxConstraints) {
@@ -95,7 +96,7 @@ abstract class ViewWhisperFormBase extends ViewPageBase implements IViewWhisperF
                         Expanded(
                           child: Form(
                             key: stateKey,
-                            child: composeForm(stateKey, context, windowSize, pageSize),
+                            child: composeForm(stateKey, pageCtx),
                           ),
                         ),
 

@@ -66,7 +66,7 @@ final class _NavigationLayoutLargeView extends _NavigationLayoutViewBase with Th
                               height: pageSize.height,
                               child: _NavigationLayoutMenu(
                                 navigationNodes: navigationNodes,
-                                routeData: routingData.targetRoute,
+                                routeData: routingData.routeData,
                               ),
                             ),
                           ),

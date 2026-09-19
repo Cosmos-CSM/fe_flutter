@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:csm_view/csm_view.dart';
+import 'package:csm_view/csm_view.dart' hide PageProxy;
 import 'package:flutter/material.dart' hide Router, Route;
 import 'package:go_router/go_router.dart' hide RouteData;
 
@@ -19,7 +19,7 @@ abstract class RoutingGraphNodeDataBase extends RoutingGraphDataBase implements 
 
   /// Builder for [IPage] transitions along [RouterBase] events.
   @override
-  final Page<void> Function(IViewPage page)? transitionBuilder;
+  final Page<void> Function(IPage page)? transitionBuilder;
 
   /// Callback invoked when the current [route] is popped or removed from the [RouterBase] history.
   /// (.go() can remove it from the history too.)
@@ -69,7 +69,7 @@ abstract class RoutingGraphNodeDataBase extends RoutingGraphDataBase implements 
       ],
       pageBuilder: (BuildContext context, GoRouterState state) {
         RoutingData routeOutput = RoutingData.fromGo(state, route);
-        IViewPage pageLaid = pageBuilder(context, routeOutput);
+        IPage pageLaid = pageBuilder(context, routeOutput);
 
         return transitionBuilder?.call(pageLaid) ?? noTransition(pageLaid);
       },

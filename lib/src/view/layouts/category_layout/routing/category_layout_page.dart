@@ -33,5 +33,5 @@ final class CategoryLayoutPage extends CategoryLayoutPageBase {
   Widget? composeIcon(BuildContext context, Color? fgColor) => iconBuilder(context, fgColor);
 
   @override
-  IViewPage composePage(BuildContext buildContext, RoutingData routingData) => pageBuilder(buildContext, routingData);
+  IPage composePage(BuildContext buildContext, RoutingData routingData) => pageBuilder(buildContext, routingData);
 }

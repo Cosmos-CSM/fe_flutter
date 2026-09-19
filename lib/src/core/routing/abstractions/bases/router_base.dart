@@ -1,4 +1,5 @@
-import 'package:csm_view/csm_view.dart';
+import 'package:csm_client_core/csm_client_core.dart';
+import 'package:csm_view/csm_view.dart' hide DataMap;
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart' hide RouteData;
 
@@ -124,6 +125,7 @@ abstract class RouterBase with ConsoleMixin implements IRouter {
     bool allowLogs = false,
     bool pushHistory = false,
     DataMap? extraData,
+    Map<String, String> pageParams = const <String, String>{},
   }) {
     extraData ??= <String, dynamic>{};
 
@@ -134,9 +136,17 @@ abstract class RouterBase with ConsoleMixin implements IRouter {
     final bool canLog = _canLog(allowLogs);
 
     if (pushHistory) {
-      GoRouter.of(context).pushNamed(route.name, extra: extraData);
+      GoRouter.of(context).pushNamed(
+        route.name,
+        extra: extraData,
+        pathParameters: pageParams,
+      );
     } else {
-      GoRouter.of(context).goNamed(route.name, extra: extraData);
+      GoRouter.of(context).goNamed(
+        route.name,
+        extra: extraData,
+        pathParameters: pageParams,
+      );
     }
     if (canLog) {
       successLog(
@@ -149,6 +159,13 @@ abstract class RouterBase with ConsoleMixin implements IRouter {
         },
       );
     }
+  }
+
+  @override
+  void loadPageParams(BuildContext viewCtx, IDecodable obj) {
+    final GoRouterState routeState = GoRouterState.of(viewCtx);
+    final DataMap dataMap = routeState.uri.queryParameters.cast();
+    obj.decode(dataMap);
   }
 
   //* --> Private static methods

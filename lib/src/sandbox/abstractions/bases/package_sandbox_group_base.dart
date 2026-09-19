@@ -1,47 +1,51 @@
 import 'package:csm_view/csm_view.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Page;
 
-/// Represents a [PackageSandboxViewBase] items group, creates a navigation access for the whole group
+/// Represents a [SandboxViewBase] items group, creates a navigation access for the whole group
 /// displaying inner items.
 ///
 /// [ThemeBase] themee base type.
-abstract class PackageSandboxGroupBase<ThemeBase extends PackageSandboxThemeBase> extends PackageSandboxEntryBase<ThemeBase> implements IPackageSandboxGroup<ThemeBase> {
+abstract class PackageSandboxGroupBase<ThemeBase extends SandboxThemeBase> extends SandboxPageNodeBase<ThemeBase> implements IPackageSandboxGroup<ThemeBase> {
   /// Group items.
   @override
-  final List<IPackageSandboxItem<ThemeBase>> sandboxItems;
+  final List<IPackageSandboxItem<ThemeBase>> nodes;
 
   /// Group items routing graph, for navigation behaviors.
   @override
-  late final Map<RouteData, IPackageSandboxEntry<ThemeBase>> routingGraph;
+  late final Map<RouteData, ISandboxPageNode<ThemeBase>> routesGraph;
 
   /// Creates a new instance.
   PackageSandboxGroupBase({
-    super.key,
     super.icon,
     super.image,
-    required this.sandboxItems,
     required super.name,
+    required this.nodes,
     required super.description,
   }) : assert(
-          sandboxItems.isNotEmpty,
+          nodes.isNotEmpty,
           'Sandbox entries group must have items',
         ) {
-    routingGraph = SandboxUtils.buildRoutingGraph(sandboxItems);
+    routesGraph = SandboxUtils.buildNavigationGraph(nodes);
   }
 
   @override
   List<IRoutingGraphData> composeRoutes(GlobalKey<NavigatorState> navLayoutKey, GlobalKey<NavigatorState> entryLayoutKey) {
-    return SandboxUtils.buildGraphRoutes(
-      routingGraph,
+    return SandboxUtils.buildRoutes(
+      routesGraph,
       navLayoutKey,
       entryLayoutKey,
     ).toList();
   }
 
   @override
-  Widget composeEntry(BuildContext buildContext, Size windowSize, ThemeBase theme) {
-    return PackageSandboxWelcomeEntryCardDashboard<ThemeBase>(
-      sandboxEntries: routingGraph,
+  IPage composeNode(SandboxPageContext<ThemeBase> sandboxPageCtx) {
+    return PageProxy(
+      routingData: sandboxPageCtx.routingData,
+      pageBuilder: (PageContext pageCtx) {
+        return SandboxCardsDashboard<ThemeBase>(
+          sandboxEntries: routesGraph,
+        );
+      },
     );
   }
 }

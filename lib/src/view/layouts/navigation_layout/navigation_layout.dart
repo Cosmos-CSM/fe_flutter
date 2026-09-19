@@ -64,8 +64,9 @@ final class NavigationLayout extends ViewLayoutBase implements INavigationLayout
 
   ///
   @override
-  Widget compose(BuildContext buildContext, Size windowSize, Size pageSize) {
-    final INavigationLayoutHeaderUserData? userData = this.userData ?? userDataBuilder?.call();
+  Widget composePage(PageContext pageCtx) {
+    INavigationLayoutHeaderUserData? userData = this.userData ?? userDataBuilder?.call();
+    Size pageSize = pageCtx.pageSize;
 
     return ResponsiveLayout(
       onLarge: _NavigationLayoutLargeView(

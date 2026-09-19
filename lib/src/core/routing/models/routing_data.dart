@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart' hide RouteData;
 
 /// Represents a [RoutingGraphBase] route change data.
 final class RoutingData {
-  /// The routing operation target route.
-  final RouteData targetRoute;
+  /// Route data for this routing operation (current route data).
+  final RouteData routeData;
 
   /// Absolute routing grapth path.
   final String absolutePath;
@@ -14,8 +14,8 @@ final class RoutingData {
   /// Stores routing parameters.
   final Map<String, String> parameters;
 
-  /// Stores routing query parameters.
-  final Map<String, List<String>> queryData;
+  /// Browser page parameters injected in [Uri].
+  final Map<String, String> pageParams;
 
   /// Sub-Route page key.
   final ValueKey<String>? pageKey;
@@ -24,8 +24,8 @@ final class RoutingData {
   const RoutingData({
     this.pageKey,
     this.parameters = const <String, String>{},
-    this.queryData = const <String, List<String>>{},
-    required this.targetRoute,
+    this.pageParams = const <String, String>{},
+    required this.routeData,
     required this.absolutePath,
   });
 
@@ -40,11 +40,12 @@ final class RoutingData {
     String? absolutePath = router.getAbsolutePath(routeData);
 
     return RoutingData(
-      targetRoute: routeData,
+      routeData: routeData,
       pageKey: goState.pageKey,
       absolutePath: absolutePath,
       parameters: goState.pathParameters,
-      queryData: goState.uri.queryParametersAll,
+      pageParams: goState.uri.queryParameters,
+      
     );
   }
 }

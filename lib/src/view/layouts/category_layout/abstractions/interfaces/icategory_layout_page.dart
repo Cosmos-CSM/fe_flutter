@@ -28,5 +28,5 @@ abstract interface class ICategoryLayoutPage {
   Widget? composeIcon(BuildContext context, Color? fgColor);
 
   /// Composes the [PageI] implementation that will be drawn into this [CategoryLayout] page entry.
-  IViewPage composePage(BuildContext context, RoutingData routingData);
+  IPage composePage(BuildContext context, RoutingData routingData);
 }

@@ -1,4 +1,4 @@
-part of '../../abstractions/bases/package_sandbox_view_base.dart';
+part of '../../abstractions/bases/sandbox_view_base.dart';
 
 /// Current device data.
 final Future<BaseDeviceInfo> deviceInfo = DeviceInfoPlugin().deviceInfo;
@@ -10,7 +10,7 @@ final class _PackageSandboxDeviceDetails extends StatelessWidget with PlatformMi
 
   @override
   Widget build(BuildContext context) {
-    final PackageSandboxThemeBase theme = ThemingUtils.get(context);
+    final SandboxThemeBase theme = ThemingUtils.get(context);
 
     return AsyncWidget<BaseDeviceInfo>(
       future: deviceInfo,
