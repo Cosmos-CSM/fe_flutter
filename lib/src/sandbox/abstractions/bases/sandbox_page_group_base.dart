@@ -5,17 +5,17 @@ import 'package:flutter/material.dart' hide Page;
 /// displaying inner items.
 ///
 /// [ThemeBase] themee base type.
-abstract class PackageSandboxGroupBase<ThemeBase extends SandboxThemeBase> extends SandboxPageNodeBase<ThemeBase> implements IPackageSandboxGroup<ThemeBase> {
+abstract class SandboxPageGroupBase<ThemeBase extends SandboxThemeBase> extends SandboxPageNodeBase<ThemeBase> implements IPackageSandboxGroup<ThemeBase> {
   /// Group items.
   @override
-  final List<IPackageSandboxItem<ThemeBase>> nodes;
+  final List<ISandboxPage<ThemeBase>> nodes;
 
   /// Group items routing graph, for navigation behaviors.
   @override
   late final Map<RouteData, ISandboxPageNode<ThemeBase>> routesGraph;
 
   /// Creates a new instance.
-  PackageSandboxGroupBase({
+  SandboxPageGroupBase({
     super.icon,
     super.image,
     required super.name,

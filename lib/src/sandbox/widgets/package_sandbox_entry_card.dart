@@ -1,7 +1,7 @@
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart';
 
-/// A card displayed that displays the information of each [IPackageSandboxItem] and its [RouteData] to handle routing when it's clicked.
+/// A card displayed that displays the information of each [ISandboxPage] and its [RouteData] to handle routing when it's clicked.
 ///
 /// [ThemeBase] type of the theme.
 final class PackageSandboxWelcomeEntryCard<ThemeBase extends SandboxThemeBase> extends StatelessWidget {

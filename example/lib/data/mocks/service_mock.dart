@@ -1,5 +1,5 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:example/mocks/entity_mock.dart';
+import 'package:example/data/mocks/entity_mock.dart';
 
 final class ServiceMock extends ServiceBase implements IServiceEx {
   ServiceMock()

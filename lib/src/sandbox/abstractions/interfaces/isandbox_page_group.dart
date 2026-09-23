@@ -6,7 +6,7 @@ import 'package:csm_view/csm_view.dart';
 /// [ThemeBase] themee base type.
 abstract interface class IPackageSandboxGroup<ThemeBase extends SandboxThemeBase> implements ISandboxPageNode<ThemeBase> {
   /// Group items.
-  final List<IPackageSandboxItem<ThemeBase>> nodes;
+  final List<ISandboxPage<ThemeBase>> nodes;
 
   /// Group items routing graph, for navigation behaviors.
   final Map<RouteData, ISandboxPageNode<ThemeBase>> routesGraph;

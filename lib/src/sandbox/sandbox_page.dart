@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' hide Page;
 /// Represents an interactive sandbox for a package component.
 ///
 /// [ThemeBase] represents the base theming data.
-final class SandboxPage<ThemeBase extends SandboxThemeBase> extends PackageSandboxItemBase<ThemeBase> {
+final class SandboxPage<ThemeBase extends SandboxThemeBase> extends SandboxPageBase<ThemeBase> {
   /// Function to build the page.
   ///
   /// [pageCtx] CSM Framework building context data.

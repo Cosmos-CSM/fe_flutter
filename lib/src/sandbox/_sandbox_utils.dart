@@ -57,7 +57,7 @@ final class SandboxUtils {
   }
 
   /// Builds the view routes format for the navigation framework based on given [nodesGraph], using their built
-  /// [RouteData] and each [IPackageSandboxItem] they represent.
+  /// [RouteData] and each [ISandboxPage] they represent.
   static Iterable<IRoutingGraphData> buildRoutes<ThemeBase extends STB>(
     SGraph<ThemeBase> nodesGraph,
     NavigationState navLytKey,

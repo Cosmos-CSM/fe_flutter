@@ -4,7 +4,7 @@ import 'package:csm_view/csm_view.dart';
 /// displaying inner items.
 ///
 /// [ThemeBase] themee base type.
-final class PackageSandboxGroup<ThemeBase extends SandboxThemeBase> extends PackageSandboxGroupBase<ThemeBase> {
+final class PackageSandboxGroup<ThemeBase extends SandboxThemeBase> extends SandboxPageGroupBase<ThemeBase> {
   /// Creates a new instance.
   PackageSandboxGroup({
     super.icon,

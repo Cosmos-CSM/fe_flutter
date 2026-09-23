@@ -1,7 +1,7 @@
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart' hide Page;
 
-final class SandboxConfigurablePage<ThemeBase extends SandboxThemeBase> extends PackageSandboxItemBase<ThemeBase> {
+final class SandboxConfigurablePage<ThemeBase extends SandboxThemeBase> extends SandboxPageBase<ThemeBase> {
   /// Builder for the main item content.
   ///
   /// [viewContext] framweork building context.

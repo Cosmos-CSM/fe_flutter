@@ -90,18 +90,31 @@ final class _SelectorCardsState<TValue> extends State<SelectorCards<TValue>> {
 
   @override
   Widget build(BuildContext context) {
+    SelectorCardsConfig<TValue> config = widget.configs;
+
     return LayoutBuilder(
       builder: (_, BoxConstraints boxConstraints) {
         boxConstraints = boxConstraints.normalize();
 
+
+        // If rowCardsCount is given we override the size to math row size.
+        double cardSpacing = widget.spacing;
+        WidgetSize? widgteSize = config.cardSize;
+        if (config.rowCardsCount != null) {
+          double cardWidth = (boxConstraints.maxWidth - (cardSpacing * 4)) / config.rowCardsCount!;
+          widgteSize = WidgetSize(cardWidth, null);
+        }
+
         return Wrap(
-          spacing: widget.spacing,
-          runSpacing: widget.spacing,
+          spacing: cardSpacing,
+          runSpacing: cardSpacing,
+          alignment: config.alignment,
+          crossAxisAlignment: config.crossAlignment,
           children: widget.values.map(
             (NamedValue<TValue> value) {
               return _SelectorCard<TValue>(
                 value: value,
-                size: widget.configs.cardSize,
+                size: widgteSize,
                 isSelected: selection.containsKey(value.name),
                 onClick: () => onOptionSelected(value),
               );

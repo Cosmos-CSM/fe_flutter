@@ -65,7 +65,7 @@ abstract class SandboxViewBase<ThemeBase extends SandboxThemeBase> extends ViewM
 
           //* Entries Layout
           RoutingGraphLayout(
-            routes: SandboxUtils.buildRoutes(nodesGraph, navigationLayoutKey, itemLayoutKey).toList(),
+            routes: SandboxUtils.buildRoutes(navGraph, navigationLayoutKey, itemLayoutKey).toList(),
             navigatorStateKey: itemLayoutKey,
             layoutBuilder: (BuildContext ctx, RoutingData routingData, Widget page) {
               ISandboxPageNode<ThemeBase> node = nodesGraph[routingData.routeData]!;
