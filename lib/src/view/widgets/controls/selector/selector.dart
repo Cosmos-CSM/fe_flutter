@@ -3,7 +3,7 @@ import 'package:csm_view/src/view/widgets/controls/selector/abstractions/interfa
 import 'package:flutter/material.dart';
 
 export 'abstractions/interfaces/iselector_enum.dart';
-export 'selector_cards.dart';
+export 'cards_selector.dart';
 
 /// Represents the available [Selector] styles.
 enum SelectorStyles {
@@ -22,12 +22,12 @@ final class Selector<TValue> extends StatelessWidget implements ISelectorWidget<
   /// Selectable values.
   final List<NamedValue<TValue>> values;
 
-  /// Event callback when [SelectorCards] value selection has changed. Will provide
+  /// Event callback when [CardsSelector] value selection has changed. Will provide
   /// the new selected value [newSelected] and [prevSelected] value.
   @override
   final Function(TValue? newSelected, TValue? prevSelected)? onSingleSelection;
 
-  /// Event callback when [SelectorCards] values selection has changed. Will provide
+  /// Event callback when [CardsSelector] values selection has changed. Will provide
   /// the new selected values [newSelection], the previous selection values [prevSelection] and
   /// the difference between the [newSelection] and [prevSelection] as [delta].
   @override
@@ -55,7 +55,7 @@ final class Selector<TValue> extends StatelessWidget implements ISelectorWidget<
   @override
   Widget build(BuildContext context) {
     if (style == SelectorStyles.cards && cardsConfig != null) {
-      return SelectorCards<TValue>(
+      return CardsSelector<TValue>(
         values: values,
         spacing: spacing,
         configs: cardsConfig!,

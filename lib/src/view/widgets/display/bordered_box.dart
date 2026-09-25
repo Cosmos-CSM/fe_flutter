@@ -1,9 +1,7 @@
 import 'package:csm_view/csm_view.dart';
 import 'package:flutter/material.dart';
 
-/// {widget} class.
-///
-/// Draws a {CSM} visual design pattern for a bordered box.
+/// Draws a border around a [Widget].
 final class BorderedBox extends StatelessWidget {
   /// Wrapped widget bordered box.
   final Widget child;
@@ -20,6 +18,9 @@ final class BorderedBox extends StatelessWidget {
   /// Content [child] padding.
   final EdgeInsets padding;
 
+  /// Sides to apply border.
+  final List<AxisDirection> sides;
+
   /// Creates a new [BorderedBox] instance.
   const BorderedBox({
     super.key,
@@ -29,21 +30,31 @@ final class BorderedBox extends StatelessWidget {
     this.padding = const EdgeInsets.only(
       top: 8,
     ),
+    this.sides = const <AxisDirection>[
+      AxisDirection.up,
+      AxisDirection.down,
+      AxisDirection.left,
+      AxisDirection.right,
+    ],
     required this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     Color borderColor = color ?? ThemingUtils.get<IThemeData>(context).page.fore;
+    BorderSide borderSide = BorderSide(
+      color: borderColor,
+      width: thickness,
+    );
 
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: radius,
-        border: Border.fromBorderSide(
-          BorderSide(
-            color: borderColor,
-            width: thickness,
-          ),
+        border: Border(
+          top: sides.contains(AxisDirection.up) ? borderSide : BorderSide.none,
+          left: sides.contains(AxisDirection.left) ? borderSide : BorderSide.none,
+          bottom: sides.contains(AxisDirection.down) ? borderSide : BorderSide.none,
+          right: sides.contains(AxisDirection.right) ? borderSide : BorderSide.none,
         ),
       ),
       child: Padding(

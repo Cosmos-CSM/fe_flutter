@@ -1,4 +1,5 @@
 import 'package:csm_view/csm_view.dart';
+import 'package:csm_view/src/view/widgets/display/side_drawer.dart';
 import 'package:flutter/material.dart';
 
 /// Represents a [SandboxStatefulPageContentBase.composeState] base requirement to succesfuly
@@ -13,13 +14,14 @@ abstract class SandboxPageStateBase<SandboxStatefulPage extends StatefulPageBase
 
   @override
   Widget composePage(PageContext pageCtx) {
-    return Stack(
-      children: <Widget>[
-        // > Settings Drawer
-
-        // > Page Content.
-        composeContent(pageCtx),
-      ],
+    return DrawerView(
+      isOpen: true,
+      title: 'Settings',
+      content: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: composeContent(pageCtx),
+      ),
+      drawer: composeSettings(pageCtx),
     );
   }
 }

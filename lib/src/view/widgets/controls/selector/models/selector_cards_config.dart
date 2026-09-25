@@ -14,12 +14,12 @@ final class SelectorCardsConfig<TValue> {
   /// Cards alignment on their cross axis.
   final WrapCrossAlignment crossAlignment;
 
-  /// Event callback when [SelectorCards] values selection has changed. Will provide
+  /// Event callback when [CardsSelector] values selection has changed. Will provide
   /// the new selected values [newSelection], the previous selection values [prevSelection] and
   /// the difference between the [newSelection] and [prevSelection] as [delta].
   final Function(List<TValue> newSelection, List<TValue> prevSelection, [List<TValue>? delta])? onMultiSelection;
 
-  /// Event callback when [SelectorCards] value selection has changed. Will provide
+  /// Event callback when [CardsSelector] value selection has changed. Will provide
   /// the new selected value [newSelected] and [prevSelected] value.
   final Function(TValue? newSelected, TValue? prevSelected)? onSingleSelection;
 

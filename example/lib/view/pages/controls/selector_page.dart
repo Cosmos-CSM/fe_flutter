@@ -33,6 +33,14 @@ class _SelectorPageContent extends SandboxStatefulPageContentBase<VSandboxThemeB
 }
 
 class _SelectorPageContentState extends SandboxPageStateBase<_SelectorPageContent, VSandboxThemeBase> {
+  
+  // `State` - current selector values.
+  List<NamedValue<String>> values = <NamedValue<String>>[
+    NamedValue<String>('Option 1', '1'),
+    NamedValue<String>('Option 2', '2'),
+    NamedValue<String>('Option 3', '3'),
+  ];
+
   @override
   Widget composeContent(PageContext pageCtx) {
     return SizedBox.fromSize(
@@ -41,15 +49,30 @@ class _SelectorPageContentState extends SandboxPageStateBase<_SelectorPageConten
         cardsConfig: SelectorCardsConfig<String>(
           rowCardsCount: 5,
         ),
-        values: <NamedValue<String>>[
-          NamedValue<String>('Option 1', '1'),
-        ],
+        values: values,
       ),
     );
   }
 
   @override
   Widget composeSettings(PageContext pageCtx) {
-    throw UnimplementedError();
+    return Column(
+      children: <Widget>[
+        // Options management.
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 16,
+          ),
+          child: ListEditor(
+            values: values
+                .map(
+                  (NamedValue<String> e) => e.name,
+                )
+                .toList(),
+          ),
+        ),
+      ],
+    );
   }
 }

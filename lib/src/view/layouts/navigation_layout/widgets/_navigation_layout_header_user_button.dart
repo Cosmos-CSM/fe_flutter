@@ -19,7 +19,7 @@ final class _NavigationHeaderUserButton extends StatefulWidget {
 /// {state} class.
 ///
 /// Handles the [State] for [_NavigationHeaderUserButton].
-final class _NavigationHeaderUserButtonState extends State<_NavigationHeaderUserButton> with ThemingStateMixin<_NavigationHeaderUserButton> {
+final class _NavigationHeaderUserButtonState extends State<_NavigationHeaderUserButton> with ThemingStateMixin<_NavigationHeaderUserButton, INavigationLayoutThemeData> {
   /// Constants default displayed user menu drawer width.
   static const double _userButtonMenuWidth = 250;
 
@@ -54,7 +54,7 @@ final class _NavigationHeaderUserButtonState extends State<_NavigationHeaderUser
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    navigationLayoutTheming = getTheme<INavigationLayoutThemeData>().navigationLayout;
+    navigationLayoutTheming = themeData.navigationLayout;
   }
 
   @override

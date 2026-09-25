@@ -19,24 +19,32 @@ final class _NavigationLayoutMenuButton extends StatefulWidget {
 }
 
 /// State class for [_NavigationLayoutMenuButton].
-final class _NavigationLayoutMenuButtonState extends State<_NavigationLayoutMenuButton> with ThemingStateMixin<_NavigationLayoutMenuButton> {
+final class _NavigationLayoutMenuButtonState extends State<_NavigationLayoutMenuButton> with ThemingStateMixin<_NavigationLayoutMenuButton, INavigationLayoutThemeData> {
   /// Wheter the button is currently hovered.
   bool isHovered = false;
 
+  /// `State` - Navigation layout theming data.
+  late ThemingData navLytThemeData;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    navLytThemeData = themeData.navigationLayout;
+  }
+
   @override
   Widget build(BuildContext context) {
-    ThemingData themeData = getTheme<INavigationLayoutThemeData>().navigationLayout;
-
     Color fgColor = widget.isSelected
-        ? themeData.back
+        ? navLytThemeData.back
         : isHovered
-            ? themeData.accent
-            : themeData.fore;
+            ? navLytThemeData.accent
+            : navLytThemeData.fore;
     Color bgColor = widget.isSelected
-        ? themeData.fore.withAlpha(178)
+        ? navLytThemeData.fore.withAlpha(178)
         : isHovered
-            ? themeData.fore.withAlpha(64)
-            : themeData.back;
+            ? navLytThemeData.fore.withAlpha(64)
+            : navLytThemeData.back;
 
     return PointerArea(
       cursor: widget.isSelected ? MouseCursor.defer : SystemMouseCursors.click,
@@ -64,7 +72,7 @@ final class _NavigationLayoutMenuButtonState extends State<_NavigationLayoutMenu
               /// Selected Entry mark.
               if (widget.isSelected)
                 ColoredBox(
-                  color: themeData.accent,
+                  color: navLytThemeData.accent,
                   child: SizedBox(
                     width: 3,
                     height: double.maxFinite,

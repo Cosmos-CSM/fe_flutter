@@ -29,12 +29,9 @@ final class PaginationSelector extends StatefulWidget {
 /// {state} class.
 ///
 /// Handles the [State] for [PaginationSelector] {widget}.
-final class _PaginationState extends State<PaginationSelector> with ThemingStateMixin<PaginationSelector> {
+final class _PaginationState extends State<PaginationSelector> with ThemingStateMixin<PaginationSelector, IThemeData> {
   /// Theme effect reference key.
   final UniqueKey themingRef = UniqueKey();
-
-  /// {state} {theming} Theming options for application page.
-  late ThemingData theming;
 
   /// {state} Current pagination options calculations.
   late PaginationData paginationData;
@@ -43,12 +40,6 @@ final class _PaginationState extends State<PaginationSelector> with ThemingState
   void initState() {
     paginationData = widget.paginationData;
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    theming = ThemingUtils.get<IThemeData>(context).page;
-    super.didChangeDependencies();
   }
 
   @override
@@ -101,19 +92,23 @@ final class _PaginationState extends State<PaginationSelector> with ThemingState
                   text: TextSpan(
                     text: 'Showing ',
                     style: TextStyle(
-                      color: theming.fore,
+                      color: themeData.page.fore,
                       fontWeight: FontWeight.w100,
                       fontStyle: FontStyle.italic,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: '(${paginationData.pageCount})',
-                        style: const TextStyle(fontWeight: FontWeight.w900),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                       const TextSpan(text: ' records from '),
                       TextSpan(
                         text: '(${paginationData.total})',
-                        style: const TextStyle(fontWeight: FontWeight.w900),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ],
                   ),
