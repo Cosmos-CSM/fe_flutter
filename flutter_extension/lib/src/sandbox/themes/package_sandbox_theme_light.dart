@@ -1,0 +1,61 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' show Colors, Icons;
+import 'package:flutter_extension/flutter_extension.dart';
+
+/// Represents a [light] mode theme.
+class PackageSandboxThemeLight extends SandboxThemeBase {
+  /// Creates a new instance.
+  PackageSandboxThemeLight([
+    String? themeId,
+  ]) : super(
+          themeId ?? 'package-landing-theme-light',
+          icon: Icon(Icons.light_mode),
+          iconBackground: Colors.white60,
+          page: ThemingData(
+            back: Color(0xFFF7F8FA),
+            fore: Colors.black,
+            accent: Colors.blue.shade900,
+          ),
+          welcomeCardTheming: ThemingData(
+            back: Color(0xFF252728),
+            fore: Color(0xFFF7F8FA),
+            accent: Colors.red,
+          ),
+          control: ThemingData(
+            back: Colors.white60,
+            fore: Colors.black,
+            accent: Colors.grey,
+          ),
+          controlError: ThemingData(
+            back: Colors.transparent,
+            fore: Colors.red,
+            accent: Colors.redAccent,
+          ),
+          controlSuccess: ThemingData(
+            back: Colors.transparent,
+            fore: Colors.green,
+            accent: Colors.greenAccent,
+          ),
+          controlDisabled: const ThemingData(
+            back: Colors.grey,
+            fore: Colors.black,
+            accent: Colors.blueGrey,
+          ),
+          dialog: ThemingData(
+            back: Color(0xfff2f2f2),
+            fore: Colors.black,
+            accent: Colors.brown[900]!,
+          ),
+          navigationLayout: ThemingData(
+            back: Colors.blue[900]!,
+            fore: Colors.white70,
+            accent: Colors.orange,
+          ),
+          primaryControlCard: StatefulControlThemeData<CardControlThemeData>(
+            $default: CardControlThemeData(),
+            atHover: CardControlThemeData(),
+            atFocused: CardControlThemeData(),
+            atSelected: CardControlThemeData(),
+          ),
+        );
+}
