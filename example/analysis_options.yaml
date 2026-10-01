@@ -1,7 +1,7 @@
 include: package:lints/recommended.yaml
 
 formatter: 
-  page_width: 120
+  page_width: 320
   trailing_commas: preserve
 
 linter:  
@@ -10,3 +10,12 @@ linter:
     always_specify_types: true
     always_use_package_imports: true
     directives_ordering: true
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
