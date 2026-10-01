@@ -1,23 +1,23 @@
-part of '../package_landing.dart';
+part of '../package_landing_view.dart';
 
 ///
-final class _PackageLandingLayoutMenu<T extends PackageLandingThemeB> extends StatelessWidget {
+final class _PackageLandingLayoutMenu<T extends LandingThemeB> extends StatelessWidget {
   final double menuWidth;
 
-  final Route currentRoute;
+  final RouteData currentRoute;
 
-  final Map<PackageLandingEntryI<T>, Route> routingThree;
+  final Map<RouteData, PackageLandingEntryI<T>> routingTree;
 
   const _PackageLandingLayoutMenu({
     required this.menuWidth,
-    required this.routingThree,
+    required this.routingTree,
     required this.currentRoute,
   });
 
   @override
   Widget build(BuildContext context) {
-    final PackageLandingThemeB theme = Theming.get();
-    final Router router = Injector.get();
+    final LandingThemeB theme = Theming.get(context);
+    final RouterBase router = InjectorUtils.get();
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -27,11 +27,11 @@ final class _PackageLandingLayoutMenu<T extends PackageLandingThemeB> extends St
         child: Column(
           spacing: 8,
           children: <Widget>[
-            for (MapEntry<PackageLandingEntryI<T>, Route> routingLeaf
-                in routingThree.entries) ...<Widget>[
+            for (MapEntry<RouteData, PackageLandingEntryI<T>> routingLeaf
+                in routingTree.entries) ...<Widget>[
               Builder(
                 builder: (BuildContext context) {
-                  final bool isSelected = currentRoute == routingLeaf.value;
+                  final bool isSelected = currentRoute == routingLeaf.key;
                   final SimpleTheming buttonTheme =
                       isSelected ? theme.pageTheming : theme.headerTheming;
       
@@ -59,7 +59,7 @@ final class _PackageLandingLayoutMenu<T extends PackageLandingThemeB> extends St
                           onPressed: isSelected
                               ? null
                               : () {
-                                  router.go(routingLeaf.value);
+                                  router.go(routingLeaf.key);
                                 },
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
@@ -80,16 +80,6 @@ final class _PackageLandingLayoutMenu<T extends PackageLandingThemeB> extends St
                 },
               )
             ],
-            Container(
-              color: Colors.red,
-              height: 500,
-              width: 100,
-            ),
-            Container(
-              color: Colors.green,
-              height: 500,
-              width: 100,
-            ),
           ],
         ),
       ),

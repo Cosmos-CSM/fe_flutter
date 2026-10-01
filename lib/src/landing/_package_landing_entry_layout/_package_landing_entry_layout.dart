@@ -1,20 +1,21 @@
-part of '../package_landing.dart';
+part of '../package_landing_view.dart';
 
 /// [LayoutB] implementation for [_PackageLandingEntryLayout].
 ///
 /// Defines the view for a package landing layout when an entry is selected and succesfuly routed at the application.
-final class _PackageLandingEntryLayout<T extends PackageLandingThemeB> extends LayoutB {
+final class _PackageLandingEntryLayout<T extends LandingThemeB> extends LayoutB {
   final PackageLandingEntryI<T> landingEntry;
 
   /// Creates a new [_PackageLandingEntryLayout] instance.
   const _PackageLandingEntryLayout({
     required super.page,
+    required super.routeData,
     required this.landingEntry,
   });
 
   @override
-  Widget compose(BuildContext buildContext, Size windowSize, Size pageSize) {
-    final T theme = Theming.get();
+  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
+    final T theme = Theming.get(context);
 
     final double paddedBox = pageSize.width - 32;
     double sectionWidth = (paddedBox) * .5;
@@ -64,7 +65,10 @@ final class _PackageLandingEntryLayout<T extends PackageLandingThemeB> extends L
                       ),
                       SizedBox(
                         width: sectionWidth,
-                        child: _PackageLandingDeviceDetails(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: _PackageLandingDeviceDetails(),
+                        ),
                       ),
                     ],
                   ),
@@ -76,7 +80,7 @@ final class _PackageLandingEntryLayout<T extends PackageLandingThemeB> extends L
                     minHeight: 500,
                   ),
                   child: SizedBox(
-                    child: landingEntry,
+                    child: page,
                   ),
                 ),
               ),

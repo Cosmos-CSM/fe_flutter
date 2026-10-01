@@ -1,24 +1,63 @@
 # CHANGELOG
 
-## Ma.Mi.Pa  - [DD.MM-YYYY]
+## 7.0.1 - [18.11-2025]
+
+- Fixes:
+
+  - Fixed an error on initial [ViewRoot] dependencies loading about missing directionality widget for loading message.
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | get_it                                  | 8.0.3            | 9.0.5           |
+    | go_router                               | 15.2.3           | 17.0.0          |
+    | device_info_plus                        | 11.5.0           | 12.2.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 6.0.0            | 6.0.0           |
+
+## 7.0.0 - [23.06-2025]
 
 - Notes:
 
-- Fixes:
+  - Changed the theming concept from a static ThemeManagerI dependency injected to an InheritedWidget implementation calling ThemeManager.of(context).
+  
+  - Refactorized PackageLanding concept to match this new Theming management.
 
 - Dependencies:
 
     | Package                                 | Previous Version | Current Version |
     |:----------------------------------------|:----------------:|:---------------:|
     | get_it                                  | 8.0.3            | 8.0.3           |
-    | go_router                               | 15.1.1           | 15.1.2          |
+    | go_router                               | 15.2.3           | 15.1.2          |
+    | device_info_plus                        | 11.5.0           | 11.4.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 6.0.0            | 6.0.0           |
+
+## 6.1.1 - [25.05-2025]
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | get_it                                  | 8.0.3            | 8.0.3           |
+    | go_router                               | 15.1.2           | 15.1.2          |
     | device_info_plus                        | 11.4.0           | 11.4.0          |
 
 - Dev Dependencies:
 
     | Package                                 | Previous Version | Current Version |
     |:----------------------------------------|:----------------:|:---------------:|
-    | flutter_lints                           | 5.0.0            | 5.0.0           |
+    | flutter_lints                           | 5.0.0            | X.X.X           |
+    | flutter_lints                           | ---              | 6.0.0           |
 
 ## 6.1.0 - [21.05-2025]
 

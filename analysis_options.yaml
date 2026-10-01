@@ -1,7 +1,8 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lints/recommended.yaml
 
 formatter: 
-  page_width: 120
+  page_width: 320
+  trailing_commas: preserve
 
 linter:  
   rules:

@@ -1,4 +1,4 @@
-part of '../package_landing.dart';
+part of '../package_landing_view.dart';
 
 
 
@@ -23,38 +23,36 @@ final class _ApplicationMenuReactor extends ReactorB {
 
 final _ApplicationMenuReactor _menuReactor = _ApplicationMenuReactor();
 
-/// [LayoutB] implementation for a [PackageLanding].
+/// [LayoutB] implementation for a [PackageLandingView].
 ///
 ///
 /// This layout draws the navigation view through the package configured entries.
-final class _PackageLandingLayout<T extends PackageLandingThemeB> extends LayoutB {
-  /// Current [RouteNodeI] data resolved.
-  final RouteData routeData;
-
-  final Map<PackageLandingEntryI<T>, Route> routingTree;
+final class _PackageLandingLayout<T extends LandingThemeB> extends LayoutB {
+  final Map<RouteData, PackageLandingEntryI<T>> routingTree;
 
   /// The current configured application themes implementations.
-  final List<ThemeI> themes;
+  final List<IThemeData> themes;
 
   /// Creates a new [_PackageLandingLayout] instance.
   const _PackageLandingLayout({
     required super.page,
+    required super.routeData,
+    
     required this.themes,
-    required this.routeData,
     required this.routingTree,
   });
 
   @override
-  Widget compose(BuildContext buildContext, Size windowSize, Size pageSize) {
-    final PackageLandingThemeB theme = Theming.get();
+  Widget compose(BuildContext context, Size windowSize, Size pageSize) {
+    final LandingThemeB theme = Theming.get(context);
 
     return Title(
-      title: routeData.route.name,
+      title: routeData.targetRoute.name,
       color: Colors.black,
       child: Column(
         children: <Widget>[
           _PackageLandingLayouHeader(
-            entryTitle: routeData.route.name,
+            entryTitle: routeData.targetRoute.name,
             applicationThemes: themes,
             menuReactor: _menuReactor,
           ),
@@ -70,12 +68,9 @@ final class _PackageLandingLayout<T extends PackageLandingThemeB> extends Layout
                     // --> Page section
                     Align(
                       alignment: Alignment.centerRight,
-                      child: AnimatedSize(
-                        duration: 200.miliseconds,
-                        child: SizedBox(
-                          width: pageSize.width - currMenuWidth,
-                          child: page,
-                        ),
+                      child: SizedBox(
+                        width: pageSize.width - currMenuWidth,
+                        child: page,
                       ),
                     ),
 
@@ -91,8 +86,8 @@ final class _PackageLandingLayout<T extends PackageLandingThemeB> extends Layout
                           height: pageSize.height,
                           child: _PackageLandingLayoutMenu<T>(
                             menuWidth: menuWidth,
-                            routingThree: routingTree,
-                            currentRoute: routeData.route,
+                            routingTree: routingTree,
+                            currentRoute: routeData.targetRoute,
                           ),
                         ),
                       ),
