@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_extension/flutter_extension.dart';
+
+/// Provides mixin utilities methods on [State] classes to access [context] directly.
+mixin ThemingStateMixin<TState extends StatefulWidget, ThemeBase extends IThemeData> on State<TState> {
+  /// Gets the current application theme data based on the given [context].
+  late ThemeBase themeData;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    themeData = ThemingUtils.get(context);
+  }
+}
